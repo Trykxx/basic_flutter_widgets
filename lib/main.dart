@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp(appTitle: "Les Widgets basiques",));
+  runApp(const MyApp(appTitle: "Burger Queen",));
 }
 
 // Classe qui hérite de Stateless
@@ -39,30 +39,61 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        leading: const Icon(Icons.home),
+        leading: const Icon(Icons.menu),
         actions: const [
             Icon(Icons.person),
-            Icon(Icons.access_time)
         ],
-        bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(24), 
-            child: Text("Salut les codeurs")
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 8, // Fait un boxshadow mais on le voit pas sur useMaterial 3
+        backgroundColor: Colors.pinkAccent.shade100,
         centerTitle: true,
       ),
-      body: Center(
-        child: Container(
-          color: Colors.blue, // Entre en conflit avec la couleur de la BoxDecoration
-          height: 128,
-          width: 228,
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(16),
-          child: const Text("Test"),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 180, // Augmenté légèrement pour accommoder le nouveau contenu
+                color: Colors.pinkAccent.shade100,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Première ligne : localisation et distance
+                          Row(
+                            children: [
+                              Icon(Icons.location_on),
+                              SizedBox(width: 5),
+                              Text("Mon restaurant le plus proche"),
+                              Spacer(),
+                              Text("4km"),
+                            ],
+                          ),
+
+                          SizedBox(height: 12), // Espace entre la ligne et le bouton
+
+                          // Bouton Commander
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.pink,
+                            ),
+                            child: Text(
+                                "Commander",
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         )
-      )
     );
   }
 }
